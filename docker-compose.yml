@@ -1,0 +1,23 @@
+# Version of the Compose file format
+# https://docs.docker.com/compose/compose-file/compose-versioning/
+version: "3.7"
+
+# Custom services
+services:
+    # nginx:
+    mysql:
+        build: .docker/mysql
+        container_name: symfony_mysql
+        volumes:
+            - .docker/data/mysql:/var/lib/mysql
+        command:
+            - "--default-authentication-plugin=mysql_native_password"
+            - "--lower_case_table_names=1"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: symfony
+            MYSQL_USER: symfony
+            MYSQL_PASSWORD: symfony
+    # php:
+    # redis:
+    # phpmyadmin:
